@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:config/application.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="dataSource"
+          class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="${dbcp.driverClass}"/>
+        <property name="url" value="${dbcp.url}"/>
+        <property name="username" value="${dbcp.username}"/>
+        <property name="password" value="${dbcp.password}"/>
+    </bean>
+
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="net.dynu.petryshyn.shop.bean"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.current_session_context_class">thread</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="purchaseDao"
+          class="net.dynu.petryshyn.shop.dao.impl.HibernatePurchaseDao">
+        <constructor-arg name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+</beans>

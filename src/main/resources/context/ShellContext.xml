@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="CurrencyContext.xml"/>
+    <import resource="DataContext.xml"/>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:config/application.properties</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="addCommand"
+          class="net.dynu.petryshyn.shop.shell.command.Add">
+        <constructor-arg name="purchaseDao" ref="purchaseDao"/>
+        <constructor-arg name="AllCommand" ref="allCommand"/>
+    </bean>
+
+    <bean id="allCommand"
+          class="net.dynu.petryshyn.shop.shell.command.All">
+        <constructor-arg name="purchaseDao" ref="purchaseDao"/>
+    </bean>
+
+    <bean id="clearCommand"
+          class="net.dynu.petryshyn.shop.shell.command.Clear">
+        <constructor-arg name="purchaseDao" ref="purchaseDao"/>
+        <constructor-arg name="allCommand" ref="allCommand"/>
+    </bean>
+    
+    <bean id="reportCommand"
+          class="net.dynu.petryshyn.shop.shell.command.Report">
+        <constructor-arg name="purchaseDao" ref="purchaseDao"/>
+        <constructor-arg name="currencyConverter" ref="currencyConverter"/>
+    </bean>
+
+    <bean id="shell"
+          class="net.dynu.petryshyn.shop.shell.ShellFactoryBean">
+        <constructor-arg name="pathElement" value=""/>
+        <constructor-arg name="hint" value=""/>
+        <constructor-arg name="handlers">
+            <list>
+                <ref bean="addCommand"/>
+                <ref bean="allCommand"/>
+                <ref bean="clearCommand"/>
+                <ref bean="reportCommand"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+</beans>

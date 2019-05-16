@@ -6,6 +6,7 @@ import net.dynu.petryshyn.shop.currency.CurrencyConverter;
 import net.dynu.petryshyn.shop.dao.PurchaseDao;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Currency;
 import java.util.Map;
 
@@ -34,7 +35,8 @@ public class Report {
 
             Map<Currency, BigDecimal> currenciesAmount = purchaseDao.getCurrenciesReport(year);
             BigDecimal report = currencyConverter.convert(currenciesAmount, targetCurrency);
-            output.append(report).append(" ").append(targetCurrency);
+            output.append(report.setScale(2, RoundingMode.DOWN)).append(" ")
+                    .append(targetCurrency);
 
         } catch (Exception ex){
             output.append("Filed to build report.").append("\n")

@@ -4,6 +4,7 @@ import com.budhash.cliche.Command;
 import net.dynu.petryshyn.shop.bean.Purchase;
 import net.dynu.petryshyn.shop.dao.PurchaseDao;
 
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.List;
 

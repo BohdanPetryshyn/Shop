@@ -15,7 +15,8 @@
           class="net.dynu.petryshyn.shop.currency.impl.FixerIoCurrencyRatesProvider">
         <constructor-arg name="accessKey" value="${currency.rates.fixer.access_key}"/>
         <constructor-arg name="favoriteCurrencies" value="${currency.rates.favorite_currencies}"/>
-        <constructor-arg name="fixerApiUrl" value="${currency.rates.fixer.api_url}"/>
+        <constructor-arg name="apiUrl" value="${currency.rates.fixer.api_url}"/>
+        <constructor-arg name="CACHE_LIFE_TIME" value="${currency.rates.cache_lifetime}"/>
     </bean>
 
     <bean id="currencyConverter"

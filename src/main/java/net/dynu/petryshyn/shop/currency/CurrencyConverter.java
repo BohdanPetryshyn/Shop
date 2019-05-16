@@ -21,9 +21,9 @@ public class CurrencyConverter {
         BigDecimal result = BigDecimal.ZERO;
         BigDecimal rate;
 
-        for(Map.Entry<Currency, BigDecimal> curencieAmount : currenciesAmount.entrySet()){
-            rate = ratesProvider.rate(curencieAmount.getKey(), to);
-            result = result.add(curencieAmount.getValue().multiply(rate));
+        for(Map.Entry<Currency, BigDecimal> currencyAmount : currenciesAmount.entrySet()){
+            rate = ratesProvider.rate(currencyAmount.getKey(), to);
+            result = result.add(currencyAmount.getValue().multiply(rate));
         }
 
         return result;

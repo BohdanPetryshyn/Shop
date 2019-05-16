@@ -56,9 +56,9 @@ class FixerIoCurrencyRatesProviderTest {
 
         HttpUrl baseUrl = server.url("/api");
 
-        CurrencyRatesProvider ratesProvider = new FixerIoCurrencyRatesProvider(
-                baseUrl.toString(),
+        CurrencyRatesProvider ratesProvider = new FixerIoCurrencyRatesProvider(baseUrl.toString(),
                 API_KEY,
+                10,
                 FAVORITE_CURRENCIES);
 
         //First rate method invocation must cache rates
@@ -112,9 +112,11 @@ class FixerIoCurrencyRatesProviderTest {
 
         HttpUrl url = server.url("/api");
 
-        CurrencyRatesProvider ratesProvider = new FixerIoCurrencyRatesProvider(
-                url.toString(),
+
+
+        CurrencyRatesProvider ratesProvider = new FixerIoCurrencyRatesProvider(url.toString(),
                 "testKey",
+                10,
                 "UAH,USD");
 
         //Calling rate() method and expecting exception with specified message;

@@ -49,8 +49,6 @@ class FixerIoCurrencyRatesProviderTest {
                 "}")
                 .setHeader("ETag", ETAG)
                 .setHeader("Date", DATE));
-        //And another with response code 304 not modified
-        server.enqueue(new MockResponse().setResponseCode(304));
 
         server.start();
 
@@ -69,25 +67,6 @@ class FixerIoCurrencyRatesProviderTest {
         BigDecimal expectedResult = new BigDecimal(UAH).divide(new BigDecimal(USD), 6, RoundingMode.DOWN);
 
         assertEquals(expectedResult, rate);
-
-        //And the second method invocation must use cached rates
-        // if the server returned response code 304
-        base = Currency.getInstance("UAH");
-        target = Currency.getInstance("RUB");
-        rate = ratesProvider.rate(base, target);
-
-       expectedResult = new BigDecimal(RUB).divide(new BigDecimal(UAH), 6, RoundingMode.DOWN);
-
-        assertEquals(expectedResult, rate);
-
-        //Checking Etag and Date header
-        //Calling takeRequest() two times to getByDate second request
-        server.takeRequest();
-        RecordedRequest recordedRequest = server.takeRequest();
-
-        //Checking request parameters given to the server
-        assertEquals(ETAG, recordedRequest.getHeader("If-None-Match"));
-        assertEquals(DATE, recordedRequest.getHeader("If-Modified-Since"));
         
         server.shutdown();
     }

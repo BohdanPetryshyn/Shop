@@ -1,4 +1,4 @@
-# shop
+# Shop
 Intelliarts Summer Camp Test Project
 
 # What you need?

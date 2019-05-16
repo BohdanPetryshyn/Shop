@@ -12,8 +12,11 @@ import java.util.logging.Level;
 public class App{
 
     public static void main( String[] args ) throws IOException {
+        //Turning off hibernate logging
         java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
+        //Initializing application context
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:context/ShellContext.xml");
+        //Starting shell
         context.getBean("shell", Shell.class).commandLoop();
     }
 }

@@ -37,6 +37,11 @@ public class All {
     private String prepareOutput(List<Purchase> purchases){
         StringBuilder output = new StringBuilder();
 
+        //Preventing index out of bounds exception
+        if(purchases.isEmpty()){
+            return "";
+        }
+
         LocalDate lastDate = purchases.get(0).getDate();
         output.append(lastDate).append("\n");
 

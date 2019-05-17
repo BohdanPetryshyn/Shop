@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ToCurrencyConverterTest {
 
     @Test
-    void convertInput() throws Exception {
+    void convertInputTest() throws Exception {
         ToCurrencyConverter converter = new ToCurrencyConverter();
 
         //Normal conditions test

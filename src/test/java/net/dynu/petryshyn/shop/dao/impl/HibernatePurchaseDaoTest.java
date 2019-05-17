@@ -75,7 +75,7 @@ class HibernatePurchaseDaoTest {
     }
 
     @Test
-    void addPurchase() {
+    void addPurchaseTest() {
         //Creating unique purchase in order to be sure that later we will getByDate exactly this purchase
         Purchase addedPurchase = new Purchase();
         addedPurchase.setName("addTest123123");
@@ -95,7 +95,7 @@ class HibernatePurchaseDaoTest {
     }
 
     @Test
-    void getPurchaseById() {
+    void getPurchaseByIdTest() {
         //Testing getByDate(long id) method
         Purchase actual = purchaseDao.getById(USDPurchase.getId());
 
@@ -104,7 +104,7 @@ class HibernatePurchaseDaoTest {
     }
 
     @Test
-    void getPurchaseByDate() {
+    void getPurchaseByDateTest() {
         List<Purchase>expected = Arrays.asList(USDPurchase, UAHPurchase);
 
         //Getting purchases with getByDate(LocalDate date) method
@@ -115,7 +115,7 @@ class HibernatePurchaseDaoTest {
     }
 
     @Test
-    void deletePurchaseById() {
+    void deletePurchaseByIdTest() {
         //Deleting test purchase
         purchaseDao.deleteById(USDPurchase.getId());
 
@@ -134,7 +134,7 @@ class HibernatePurchaseDaoTest {
     }
 
     @Test
-    void deletePurchaseByDate() {
+    void deletePurchaseByDateTest() {
         //Deleting today's purchases
         purchaseDao.deleteByDate(LocalDate.now());
 
@@ -156,7 +156,7 @@ class HibernatePurchaseDaoTest {
     }
 
     @Test
-    void getAllPurchasesSortedByDate() {
+    void getAllPurchasesSortedByDateTest() {
         //Getting getAllSortedByDate() method result
         List<Purchase> actual = purchaseDao.getAllSortedByDate();
 
@@ -168,7 +168,7 @@ class HibernatePurchaseDaoTest {
     }
 
     @Test
-    void getPurchaseByYear() {
+    void getPurchaseByYearTest() {
         //Preparing expected result
         List<Purchase> expected = Arrays.asList(USDPurchase, UAHPurchase);
 
@@ -184,7 +184,7 @@ class HibernatePurchaseDaoTest {
     }
 
     @Test
-    void getCurrenciesReport() {
+    void getCurrenciesReportTest() {
         Map<Currency, BigDecimal> expected = new HashMap<>();
         expected.put(USDPurchase.getCurrency(), USDPurchase.getPrise());
         expected.put(UAHPurchase.getCurrency(), UAHPurchase.getPrise());

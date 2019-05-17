@@ -16,7 +16,7 @@ import static org.mockito.Mockito.*;
 class AllTest {
 
     @Test
-    void all() {
+    void allCommandTest() {
         //Mocking required constructor arguments for normal conditions test
         PurchaseDao purchaseDaoMock = mock(PurchaseDao.class);
 

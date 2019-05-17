@@ -16,7 +16,7 @@ import static org.mockito.Mockito.*;
 class ReportTest {
 
     @Test
-    void report() throws IOException {
+    void reportTest() throws IOException {
         //Mocking required constructor arguments for normal conditions test
         PurchaseDao purchaseDaoMock = mock(PurchaseDao.class);
 
@@ -35,7 +35,7 @@ class ReportTest {
         when(converterMock.convert(testCurrenciesReport, Currency.getInstance("UAH")))
                 .thenReturn(testConvertResult);
 
-        //Testing report command
+        //Testing reportTest command
         Report reportCommand = new Report(purchaseDaoMock, converterMock);
 
         String result = reportCommand.report(2019, Currency.getInstance("UAH"));
@@ -48,7 +48,7 @@ class ReportTest {
 
         when(purchaseDaoMock.getCurrenciesReport(2019)).thenThrow(new RuntimeException(errorMessage));
 
-        //Testing report command in extreme conditions
+        //Testing reportTest command in extreme conditions
         result = reportCommand.report(2019, Currency.getInstance("UAH"));
 
         assertTrue(result.contains(errorMessage));

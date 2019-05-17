@@ -15,7 +15,7 @@ import static org.mockito.Mockito.*;
 class CurrencyConverterTest {
 
     @Test
-    void singleConversion() throws IOException {
+    void singleConversionTest() throws IOException {
 
         Currency base = Currency.getInstance("USD");
         Currency target = Currency.getInstance("UAH");
@@ -36,7 +36,7 @@ class CurrencyConverterTest {
     }
 
     @Test
-    void multipleConversion() throws IOException {
+    void multipleConversionTest() throws IOException {
 
         //Preparing test input
         Map<Currency, BigDecimal> currenciesAmount = new HashMap<>();

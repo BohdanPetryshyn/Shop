@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ToLocalDateConverterTest {
 
     @Test
-    void convertInput() throws Exception {
+    void convertInputTest() throws Exception {
         ToLocalDateConverter converter = new ToLocalDateConverter();
 
         //Normal conditions test

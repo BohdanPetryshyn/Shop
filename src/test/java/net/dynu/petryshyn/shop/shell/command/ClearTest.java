@@ -12,7 +12,7 @@ class ClearTest {
 
     @Test
     //In this test we expect only that PurchaseDao.deleteByDate() will be invoked
-    void clear() {
+    void clearTest() {
 
         //Mocking required constructor arguments for normal conditions test
         PurchaseDao purchaseDaoMock = mock(PurchaseDao.class);

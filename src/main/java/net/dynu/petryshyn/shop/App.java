@@ -17,6 +17,7 @@ public class App{
         //Initializing application context
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:context/ShellContext.xml");
         //Starting shell
-        context.getBean("shell", Shell.class).commandLoop();
+        Shell shell = context.getBean("shell", Shell.class);
+        shell.commandLoop();
     }
 }

@@ -70,7 +70,7 @@ public class FixerIoCurrencyRatesProvider implements CurrencyRatesProvider {
             updateCache();
         }
 
-        return getRatefromCache(base, target);
+        return getRateFromCache(base, target);
     }
 
     private void updateCache() throws IOException {
@@ -86,7 +86,7 @@ public class FixerIoCurrencyRatesProvider implements CurrencyRatesProvider {
                 .build()
                 .toString();
 
-        FixerLatestResponse fixerResponse = getFixerResponse(url);
+        FixerLatestResponse fixerResponse = getFixerRespose(url);
 
         if(fixerResponse == null){      //If rates haven't been changed
             lastUpdate = LocalDateTime.now();
@@ -109,7 +109,7 @@ public class FixerIoCurrencyRatesProvider implements CurrencyRatesProvider {
     }
 
     //Return null if rates haven't been changed on fixer.io
-    private FixerLatestResponse getFixerResponse(String url) throws IOException {
+    private FixerLatestResponse getFixerRespose(String url) throws IOException {
         //Building request
         Request request = new Request.Builder()
                 .url(url)
@@ -141,7 +141,7 @@ public class FixerIoCurrencyRatesProvider implements CurrencyRatesProvider {
         }
     }
 
-    private BigDecimal getRatefromCache(Currency base, Currency target){
+    private BigDecimal getRateFromCache(Currency base, Currency target){
         return cache.get(target).divide(cache.get(base), 6, RoundingMode.DOWN);
     }
 

@@ -86,7 +86,7 @@ public class FixerIoCurrencyRatesProvider implements CurrencyRatesProvider {
                 .build()
                 .toString();
 
-        FixerLatestResponse fixerResponse = getFixerRespose(url);
+        FixerLatestResponse fixerResponse = getFixerResponse(url);
 
         if(fixerResponse == null){      //If rates haven't been changed
             lastUpdate = LocalDateTime.now();
@@ -109,7 +109,7 @@ public class FixerIoCurrencyRatesProvider implements CurrencyRatesProvider {
     }
 
     //Return null if rates haven't been changed on fixer.io
-    private FixerLatestResponse getFixerRespose(String url) throws IOException {
+    private FixerLatestResponse getFixerResponse(String url) throws IOException {
         //Building request
         Request request = new Request.Builder()
                 .url(url)

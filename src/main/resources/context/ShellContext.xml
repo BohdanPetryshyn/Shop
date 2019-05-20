@@ -37,6 +37,15 @@
         <constructor-arg name="currencyConverter" ref="currencyConverter"/>
     </bean>
 
+    <bean id="toBigDecimalConverter"
+          class="net.dynu.petryshyn.shop.shell.converter.ToBigDecimalConverter"/>
+
+    <bean id="toCurrencyConverter"
+          class="net.dynu.petryshyn.shop.shell.converter.ToCurrencyConverter"/>
+
+    <bean id="toLocalDateConverter"
+          class="net.dynu.petryshyn.shop.shell.converter.ToLocalDateConverter"/>
+
     <bean id="shell"
           class="net.dynu.petryshyn.shop.shell.ShellFactoryBean">
         <constructor-arg name="pathElement" value=""/>
@@ -47,6 +56,13 @@
                 <ref bean="allCommand"/>
                 <ref bean="clearCommand"/>
                 <ref bean="reportCommand"/>
+            </list>
+        </constructor-arg>
+        <constructor-arg name="inputConverters">
+            <list>
+                <ref bean="toBigDecimalConverter"/>
+                <ref bean="toCurrencyConverter"/>
+                <ref bean="toLocalDateConverter"/>
             </list>
         </constructor-arg>
     </bean>

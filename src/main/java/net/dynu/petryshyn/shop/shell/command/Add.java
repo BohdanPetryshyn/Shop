@@ -16,11 +16,6 @@ import java.util.Currency;
 
 public class Add {
 
-    public static final InputConverter[] CLI_INPUT_CONVERTERS = {
-            new ToLocalDateConverter(),
-            new ToBigDecimalConverter(),
-            new ToCurrencyConverter()};
-
     private PurchaseDao purchaseDao;
     private All AllCommand;
 
